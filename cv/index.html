@@ -27,13 +27,14 @@
 <style>@keyframes fonts-loading { 0%, 99% { color: transparent; } } html.wf-loading * { animation: fonts-loading 3s; }</style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <style>
-  /* Completely hide Squarespace floating cart, timer, and cart icon elements */
-  .sqs-cart-dropzone,
-  .sqs-pill-shopping-cart,
-  .cart-container,
-  [data-cart-custom-element],
-  .header-actions-action--cart {
+<style>
+  /* Suppress floating fixed/absolute elements anchored near the bottom corner */
+  [class*="cart"],
+  [id*="cart"],
+  [class*="Cart"],
+  [id*="Cart"],
+  [class*="reservation"],
+  [class*="timer"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
