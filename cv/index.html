@@ -95,8 +95,8 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* On iPad/tablet: stretch the iframe to the full viewport width,
-       escaping the page gutter so the PDF fills edge-to-edge */
+    /* On iPad/tablet: use Google Docs viewer to avoid iOS Safari's
+       fixed-width PDF rendering with gray side margins */
     @media (max-width: 1024px) {
       .pdf-wrapper {
         margin-left: calc(-1 * var(--gutter));
@@ -110,6 +110,14 @@
         width: 100%;
         height: 100%;
       }
+
+      iframe.native-pdf { display: none; }
+      iframe.gdocs-pdf  { display: block; }
+    }
+
+    @media (min-width: 1025px) {
+      iframe.gdocs-pdf  { display: none; }
+      iframe.native-pdf { display: block; }
     }
 
     /* On small phones, show a prominent download link instead of
@@ -149,7 +157,10 @@
       <p class="pdf-link"><a href="/SunDehua_CV.pdf">CV [PDF]</a></p>
       <span class="pdf-mobile-note">→ <a href="/SunDehua_CV.pdf">Open CV (PDF)</a></span>
       <div class="pdf-wrapper">
-        <iframe src="/SunDehua_CV.pdf" title="Curriculum Vitae"></iframe>
+        <!-- Desktop: native browser PDF viewer -->
+        <iframe class="native-pdf" src="/SunDehua_CV.pdf" title="Curriculum Vitae"></iframe>
+        <!-- Tablet: Google Docs viewer avoids iOS Safari's gray-margin PDF iframe -->
+        <iframe class="gdocs-pdf" src="https://docs.google.com/viewer?url=https://oliversundehua.com/SunDehua_CV.pdf&embedded=true" title="Curriculum Vitae"></iframe>
       </div>
     </main>
 
