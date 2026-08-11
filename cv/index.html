@@ -37,7 +37,6 @@
       padding: 0 var(--gutter);
     }
 
-    /* ── Header ── */
     header {
       display: flex;
       align-items: baseline;
@@ -46,7 +45,6 @@
       flex-wrap: wrap;
     }
 
-    /* Synced with teaching page */
     .site-title {
       font-size: clamp(2.2rem, 3vw, 3rem);
       font-weight: 500;
@@ -68,64 +66,30 @@
       text-underline-offset: 3px;
     }
 
-    /* ── Main ── */
     main { padding: 2vw 0 6vw; }
 
     .pdf-link {
       font-size: clamp(1.3rem, 1.9vw, 1.6rem);
       font-weight: 500;
-      line-height: 1.4;
+      margin-bottom: 1.5rem;
     }
-
     .pdf-link a {
       color: var(--text);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    .pdf-wrapper { margin-top: 1.5rem; }
-
     iframe {
       width: 100%;
       height: 90vh;
       border: none;
       display: block;
-      -webkit-overflow-scrolling: touch;
     }
 
-    /* Tablet: Google Docs viewer avoids iOS Safari's gray-margin PDF iframe */
-    @media (max-width: 1024px) {
-      .pdf-wrapper {
-        margin-left: calc(-1 * var(--gutter));
-        margin-right: calc(-1 * var(--gutter));
-        width: calc(100% + 2 * var(--gutter));
-        height: 85vh;
-        overflow: hidden;
-      }
-
-      iframe { width: 100%; height: 100%; }
-      iframe.native-pdf { display: none; }
-      iframe.gdocs-pdf  { display: block; }
-    }
-
-    @media (min-width: 1025px) {
-      iframe.gdocs-pdf  { display: none; }
-      iframe.native-pdf { display: block; }
-    }
-
-    /* Small phones: hide iframe, show download link instead */
+    /* Hide iframe on small phones — just use the download link */
     @media (max-width: 600px) {
-      .pdf-wrapper { display: none; }
-      .pdf-mobile-note {
-        display: block;
-        margin-top: 1rem;
-        font-size: clamp(1.1rem, 4vw, 1.5rem);
-        font-weight: 500;
-        color: var(--text);
-      }
+      iframe { display: none; }
     }
-
-    .pdf-mobile-note { display: none; }
   </style>
 </head>
 
@@ -142,15 +106,8 @@
     </header>
 
     <main>
-      <!-- Update the href below if your CV filename changes -->
       <p class="pdf-link"><a href="/SunDehua_CV.pdf">CV [PDF]</a></p>
-      <span class="pdf-mobile-note">→ <a href="/SunDehua_CV.pdf">Open CV (PDF)</a></span>
-      <div class="pdf-wrapper">
-        <!-- Desktop: native browser PDF viewer -->
-        <iframe class="native-pdf" src="/SunDehua_CV.pdf" title="Curriculum Vitae"></iframe>
-        <!-- Tablet: Google Docs viewer avoids iOS Safari's gray-margin PDF rendering -->
-        <iframe class="gdocs-pdf" src="https://docs.google.com/viewer?url=https://oliversundehua.com/SunDehua_CV.pdf&embedded=true" title="Curriculum Vitae"></iframe>
-      </div>
+      <iframe src="/SunDehua_CV.pdf" title="Curriculum Vitae"></iframe>
     </main>
 
   </div>
